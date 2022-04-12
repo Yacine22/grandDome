@@ -1981,6 +1981,7 @@ class others:
     def miseAJour(self):
         os.system("sudo rm -r /home/pi/new_dome")
         print("Deleted!")
+        time.sleep(2)
         self.wifi_wind_con.destroy()
         self.envi_windO.destroy()
         #user_interface.close_window()
