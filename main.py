@@ -1973,7 +1973,7 @@ class others:
         self.wifi_wind_con.rowconfigure(0, weight=1)
         self.wifi_wind_con.columnconfigure(0, weight=1)
         
-        #self.wifi_wind_con.pack()
+        self.miseAJour()
         
         
         
