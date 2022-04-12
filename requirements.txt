@@ -1,0 +1,6 @@
+smbus
+Pillow
+sh 
+gphoto2 
+pyexiv2
+opencv-python
