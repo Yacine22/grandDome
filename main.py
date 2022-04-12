@@ -1828,12 +1828,12 @@ class others:
         
         for i, data in enumerate(self.environment_list):
             label = Label(self.frame, text=data, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=30)
-            label.grid(row=i, column=0, padx=25, pady=35, sticky='news')
+            label.grid(row=i, column=0, padx=10, pady=25, sticky='news')
             
             
         for i, e in enumerate(self.autres_data):
             label = Label(self.frame, text=e, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 15 * -1, "bold"),  width=30)
-            label.grid(row=i, column=1, padx=5, pady=35, sticky='news')
+            label.grid(row=i, column=1, padx=25, pady=35, sticky='news')
             
         web_label = Label(self.frame, text="Notre Site Web", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=30)
         web_label.grid(row=len(self.environment_list), column=0, padx=10, pady=35, sticky='news')
@@ -1841,17 +1841,17 @@ class others:
         web_label_.grid(row=len(self.environment_list), column=1, padx=5, pady=35, sticky='news')
         web_label_.bind("<Button-1>", lambda e: self.callback("https://mercurioimaging.com/"))
         
-        self.icone_wifi= Image.open(icons_path_+"wifi.png").resize((65, 65))
-        self.icone_wifi = ImageTk.PhotoImage(master=self.envi_wind_c, image=self.icone_wifi)
+        #self.icone_wifi= Image.open(icons_path_+"wifi.png").resize((65, 65))
+        #self.icone_wifi = ImageTk.PhotoImage(master=self.envi_wind_c, image=self.icone_wifi)
         
-        self.button_MAJ = Button(self.frame, text="Mise à Jour de l'application", fg="#FFFFFF",bg='#212121', command=self.wifi_setter)
-        self.button_MAJ.grid(row=6, column=2, pady=30, sticky='news')
+        self.button_MAJ = Button(self.frame, text="Mise à Jour", fg="#FFFFFF",bg='#212121', command=self.wifi_setter)
+        self.button_MAJ.grid(row=6, column=1, sticky='s')
         
         self.envi_windO.rowconfigure(0, weight=1)
         self.envi_windO.columnconfigure(0, weight=1)
         
         self.frame_exit.grid(row=0, column=0, sticky='nw')
-        self.frame.grid(row=0, column=0, sticky='n')
+        self.frame.grid(row=0, column=0, padx=75, sticky='n')
         self.button_exit.grid(row=0, column=0, sticky='news')
         
         self._logo_mercurio_au = Image.open(icons_path_+"logo_mercurio.png").resize((100, 60))
@@ -1870,12 +1870,12 @@ class others:
         #self.envi_wind.geometry('800x480')
         self.wifi_wind.configure(bg="#212121")
         
-        self.label_wifi = Label(self.wifi_wind, text="Veuillez Etablir une connexion WiFi", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"))
-        self.label_wifi.grid(row=0, column=1, sticky='news')
+        #self.label_wifi = Label(self.wifi_wind, text="Veuillez Etablir une connexion WiFi", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"))
+        #self.label_wifi.grid(row=0, column=1, sticky='n')
         
         self.icone_deRetourW = Image.open(icons_path_+"IconeRetour.png").resize((65, 65))
         self.icone_RetcamW = ImageTk.PhotoImage(master=self.wifi_wind, image=self.icone_deRetourW)
-        self.button_exitW = Button(self.wifi_wind, text="Sortir", image=self.icone_RetcamW, bg='#212121', command=self.envi_wind_c.destroy)
+        self.button_exitW = Button(self.wifi_wind, text="Sortir", image=self.icone_RetcamW, bg='#212121', command=self.wifi_wind.destroy)
         self.button_exitW.place(x=0, y=0)
         
         self.ssid_list = settings.wifi_ssid_list()
@@ -2106,15 +2106,10 @@ class _camera_folder_:
             self.camera_folder = "nA"
 
         
-        self.icone_deRetourCam = Image.open(icons_path_+"IconeRetour.png").resize((65, 65))
-        self.icone_Retcam = ImageTk.PhotoImage(master=self.envi_wind_c, image=self.icone_deRetourCam)
-        self.button_exit = Button(self.envi_wind_c, text="Sortir", image=self.icone_Retcam, bg='#212121', command=self.envi_wind_c.destroy)
+        #self.icone_deRetourCam = Image.open(icons_path_+"IconeRetour.png").resize((65, 65))
+        #self.icone_Retcam = ImageTk.PhotoImage(master=self.envi_wind_c, image=self.icone_deRetourCam)
+        self.button_exit = Button(self.envi_wind_c, text="Sortir", bg='#212121', fg='#FFF3AE', width=10, height=3, command=self.envi_wind_c.destroy)
         self.button_exit.place(x=0, y=0)
-    
-        
-        self.seConnecterWifiLabel = Label(self.frame, text="Réglages de connexion WiFi", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=30)
-        self.seConnecterWifiLabel.grid(row=5, column=0, pady=25, sticky='news')
-
         
         self.label_camera_text = Label(self.frame, text=self.camera_folder_label, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=30)
         self.label_camera_text.grid(row=1, column=0, sticky='news')
@@ -2134,9 +2129,6 @@ class _camera_folder_:
         self.intensit_set = Label(self.frame, text=str(intensity), bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=30)
         self.intensit_set.grid(row=3, column=1, pady=10, sticky='news')
         
-        
-        self.label_MAJ = Label(self.frame, text="", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), width=33)
-        self.label_MAJ.grid(row=7, column=1, pady=20, sticky='news')
         
         self.envi_wind_c.rowconfigure(0, weight=1)
         self.envi_wind_c.columnconfigure(0, weight=1)
