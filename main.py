@@ -1842,11 +1842,10 @@ class others:
         web_label_.grid(row=len(self.environment_list), column=1, padx=5, pady=35, sticky='news')
         web_label_.bind("<Button-1>", lambda e: self.callback("https://mercurioimaging.com/"))
         
-        #self.icone_wifi= Image.open(icons_path_+"wifi.png").resize((65, 65))
-        #self.icone_wifi = ImageTk.PhotoImage(master=self.envi_wind_c, image=self.icone_wifi)
         
         self.button_MAJ = Button(self.frame, text="Mise à Jour", fg="#FFFFFF",bg='#212121', command=self.wifi_setter)
         self.button_MAJ.grid(row=6, column=1, sticky='s')
+        
         
         self.envi_windO.rowconfigure(0, weight=1)
         self.envi_windO.columnconfigure(0, weight=1)
@@ -1934,6 +1933,7 @@ class others:
         wifi_ssid = self.value
         print(wifi_ssid)
     
+    
     def wifi_conf(self):
         self.pswrd = self.mot_de_passeWifi.get()
         print(self.pswrd)
@@ -1964,21 +1964,23 @@ class others:
         self.button_exitCnx = Button(self.wifi_wind_con, text="Sortir", image=self.icone_RetcamCnx, bg='#212121', command=self.wifi_wind_con.destroy)
         self.button_exitCnx.place(x=0, y=0)
         
-        os.system("sudo rm -r /home/pi/new_dome")
-        print("Deleted!")
         
         self.label_MAJWIFI = Label(self.wifi_wind_con, text="Connexion OK", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 15 * -1, "bold"), width=30)
         self.label_MAJWIFI.grid(row=0, column=0, padx=50, pady=10, sticky='n')
+        
+        self.button_MAJ = Button(self.wifi_wind_con, text="Mise à Jour", fg="#FFFFFF",bg='#3F3F38', font=("Roboto Mono", 24 * -1, "bold"), height=10, command=self.miseAJour)
+        self.button_MAJ.grid(row=2, column=0, padx=20, sticky='news')
         
         self.wifi_wind_con.rowconfigure(0, weight=1)
         self.wifi_wind_con.columnconfigure(0, weight=1)
         
         time.sleep(2)
-        self.miseAJour()
-        
+       
         
         
     def miseAJour(self):
+        os.system("sudo rm -r /home/pi/new_dome")
+        print("Deleted!")
         self.wifi_wind_con.destroy()
         self.envi_windO.destroy()
         #user_interface.close_window()
