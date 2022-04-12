@@ -1973,14 +1973,15 @@ class others:
         self.wifi_wind_con.rowconfigure(0, weight=1)
         self.wifi_wind_con.columnconfigure(0, weight=1)
         
+        time.sleep(2)
         self.miseAJour()
         
         
         
     def miseAJour(self):
-        self.wifi_wind.destroy()
+        self.wifi_wind_con.destroy()
         self.envi_windO.destroy()
-        user_interface.close_window()
+        #user_interface.close_window()
         
         time.sleep(2)
         os.system("python /home/pi/update_app.py")
