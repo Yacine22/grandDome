@@ -22,7 +22,8 @@ import webbrowser, threading
 from i2c_devices import i2c_checker
 import RPi.GPIO as GPIO
 from zipfile import ZipFile
-import ext 
+import ext
+
 
 ###***
 
@@ -1864,53 +1865,57 @@ class others:
         
     def wifi_setter(self):
         global clavier_model
-        self.wifi_wind = Toplevel(self.envi_windO)
-        self.wifi_wind.attributes('-fullscreen', True)
-        self.wifi_wind.title('environment')
-        #self.envi_wind.geometry('800x480')
-        self.wifi_wind.configure(bg="#212121")
-        
-        #self.label_wifi = Label(self.wifi_wind, text="Veuillez Etablir une connexion WiFi", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"))
-        #self.label_wifi.grid(row=0, column=1, sticky='n')
-        
-        self.icone_deRetourW = Image.open(icons_path_+"IconeRetour.png").resize((65, 65))
-        self.icone_RetcamW = ImageTk.PhotoImage(master=self.wifi_wind, image=self.icone_deRetourW)
-        self.button_exitW = Button(self.wifi_wind, text="Sortir", image=self.icone_RetcamW, bg='#212121', command=self.wifi_wind.destroy)
-        self.button_exitW.place(x=0, y=0)
-        
-        self.ssid_list = settings.wifi_ssid_list()
-        
-        self.entry_param = []
-        self.display_wifilist = ["SSID", "Mot de Passe"]
-        
-        self.scrollbar = Scrollbar(self.wifi_wind, orient="vertical", width=35, bg="#FFF3AE", troughcolor="#212121")
-        self.list_para = Listbox(self.wifi_wind, height=2, width=25, exportselection=0, font=("Roboto Mono", 20 * -1, "bold"), bg="#212121", fg="#FFF3AE",
-                                     selectmode=SINGLE, yscrollcommand=self.scrollbar.set)
+        if settings.internet_on() == False:
+            self.wifi_wind = Toplevel(self.envi_windO)
+            self.wifi_wind.attributes('-fullscreen', True)
+            self.wifi_wind.title('environment')
+            #self.envi_wind.geometry('800x480')
+            self.wifi_wind.configure(bg="#212121")
             
-        for param in self.ssid_list:            
-            self.list_para.insert(END, param)
+            #self.label_wifi = Label(self.wifi_wind, text="Veuillez Etablir une connexion WiFi", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"))
+            #self.label_wifi.grid(row=0, column=1, sticky='n')
             
-        self.scrollbar.place(x=600, y=50) ### grid 
-        self.list_para.place(x=200, y=50)
-        self.scrollbar.config(command=self.list_para.yview)
-        self.list_para.bind('<<ListboxSelect>>', self.select_text_wifi)
-
-        
-        for i,d in enumerate(self.display_wifilist):
-            self.label = Label(self.wifi_wind, text="  "+d, height=2, bd=2, width=20, relief="flat", font=("Roboto Mono", 10 * -1, "bold"), fg="#FFF3AE",
-                                  bg="#212121").place(x=22, y=73+46*i)
-        self.mot_de_passeWifi = Entry(self.wifi_wind, width=30, bd=2, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), show="*")
-        self.mot_de_passeWifi.place(x=250, y=115)
-        
-        self.valid_wifi_data = Button(self.wifi_wind, text="OK", bg='#212121', fg='#FFF3AF',command=self.wifi_conf)
-        self.valid_wifi_data.place(x=600, y=130)
-        
-        self.chclavier = Button(self.wifi_wind, text="Clavier", bg='#212121', fg='#FFF3AF', command=self.chclavierMaj)
-        self.chclavier.place(x=600, y=160)
-        
-        
-        self.wifi_wind.rowconfigure(0, weight=1)
-        self.wifi_wind.columnconfigure(0, weight=1)
+            self.icone_deRetourW = Image.open(icons_path_+"IconeRetour.png").resize((65, 65))
+            self.icone_RetcamW = ImageTk.PhotoImage(master=self.wifi_wind, image=self.icone_deRetourW)
+            self.button_exitW = Button(self.wifi_wind, text="Sortir", image=self.icone_RetcamW, bg='#212121', command=self.wifi_wind.destroy)
+            self.button_exitW.place(x=0, y=0)
+            
+            self.ssid_list = settings.wifi_ssid_list()
+            
+            self.entry_param = []
+            self.display_wifilist = ["SSID", "Mot de Passe"]
+            
+            self.scrollbar = Scrollbar(self.wifi_wind, orient="vertical", width=35, bg="#FFF3AE", troughcolor="#212121")
+            self.list_para = Listbox(self.wifi_wind, height=2, width=25, exportselection=0, font=("Roboto Mono", 20 * -1, "bold"), bg="#212121", fg="#FFF3AE",
+                                         selectmode=SINGLE, yscrollcommand=self.scrollbar.set)
+                
+            for param in self.ssid_list:            
+                self.list_para.insert(END, param)
+                
+            self.scrollbar.place(x=600, y=50) ### grid 
+            self.list_para.place(x=200, y=50)
+            self.scrollbar.config(command=self.list_para.yview)
+            self.list_para.bind('<<ListboxSelect>>', self.select_text_wifi)
+    
+            
+            for i,d in enumerate(self.display_wifilist):
+                self.label = Label(self.wifi_wind, text="  "+d, height=2, bd=2, width=20, relief="flat", font=("Roboto Mono", 10 * -1, "bold"), fg="#FFF3AE",
+                                      bg="#212121").place(x=22, y=73+46*i)
+            self.mot_de_passeWifi = Entry(self.wifi_wind, width=30, bd=2, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), show="*")
+            self.mot_de_passeWifi.place(x=250, y=115)
+            
+            self.valid_wifi_data = Button(self.wifi_wind, text="OK", bg='#212121', fg='#FFF3AF',command=self.wifi_conf)
+            self.valid_wifi_data.place(x=600, y=130)
+            
+            self.chclavier = Button(self.wifi_wind, text="Clavier", bg='#212121', fg='#FFF3AF', command=self.chclavierMaj)
+            self.chclavier.place(x=600, y=160)
+            
+            
+            self.wifi_wind.rowconfigure(0, weight=1)
+            self.wifi_wind.columnconfigure(0, weight=1)
+            
+        else:
+            self.connection_state()
     
     def set_text_W(self, text):
         widget = self.wifi_wind.focus_get()
@@ -1948,7 +1953,7 @@ class others:
         self.connection_state()
     
     def connection_state(self):
-        self.wifi_wind_con = Toplevel(self.wifi_wind)
+        self.wifi_wind_con = Toplevel()
         self.wifi_wind_con.attributes('-fullscreen', True)
         self.wifi_wind_con.title('Connexion')
         #self.envi_wind.geometry('800x480')
@@ -1958,31 +1963,29 @@ class others:
         self.icone_RetcamCnx = ImageTk.PhotoImage(master=self.wifi_wind_con, image=self.icone_deRetourCnx)
         self.button_exitCnx = Button(self.wifi_wind_con, text="Sortir", image=self.icone_RetcamCnx, bg='#212121', command=self.wifi_wind_con.destroy)
         self.button_exitCnx.place(x=0, y=0)
-        time.sleep(15)
-        if settings.internet_on() == True:
-            self.conn_label = Label(self.wifi_wind_con, text=" Connecté ! ", height=2, bd=2, width=20, relief="flat", font=("Roboto Mono", 18 * -1, "bold"), fg="#FFF3AE",
-                                  bg="#212121").grid(row=1, column=0, sticky='news')
-        else:
-            self.conn_label = Label(self.wifi_wind_con, text=" Non Connecté ! ", height=2, bd=2, width=20, relief="flat", font=("Roboto Mono", 18 * -1, "bold"), fg="#FFF3AE",
-                                  bg="#212121").grid(row=1, column=0, sticky='news')
-            
+        
+        os.system("sudo rm -r /home/pi/new_dome")
+        print("Deleted!")
+        
+        self.label_MAJWIFI = Label(self.wifi_wind_con, text="Connexion OK", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 15 * -1, "bold"), width=30)
+        self.label_MAJWIFI.grid(row=0, column=0, padx=50, pady=10, sticky='n')
+        
         self.wifi_wind_con.rowconfigure(0, weight=1)
         self.wifi_wind_con.columnconfigure(0, weight=1)
         
-        self.wifi_wind_con.pack()
+        #self.wifi_wind_con.pack()
         
-        time.sleep(2)
-        self.wifi_wind_con.destroy()
+        
         
     def miseAJour(self):
         self.wifi_wind.destroy()
         self.envi_windO.destroy()
         user_interface.close_window()
-        os.system("sudo rm -r /home/pi/grandDome")
-        os.system("git clone https://github.com/Yacine22/grandDome.git")
-        self.label_MAJ['text'] = "Mise à jour ..."
-        time.sleep(300)
-        self.label_MAJ['text'] = " Mise à jour OK"
+        
+        time.sleep(2)
+        os.system("python /home/pi/update_app.py")
+        
+        
         
     def chclavier2(self):
         self.wifi_wind.update()
@@ -2020,7 +2023,7 @@ class others:
     
     def chclavierC(self):
         self.wifi_wind.update()
-        self.chclavier["text"] = "ABC"
+        self.chclavier["text"] = "1AB"
         keypad_frame = Frame(self.wifi_wind, bg='#212121', relief='groove')
         
         self.chclavier['command'] = self.chclavierMaj
@@ -2138,7 +2141,6 @@ class _camera_folder_:
         self._logo_mercurio_a = Image.open(icons_path_+"logo_mercurio.png").resize((100, 60))
         self.__logo__a = ImageTk.PhotoImage(master=self.envi_wind_c, image=self._logo_mercurio_a)
         self.__label_logo__a = Label(self.envi_wind_c, image=self.__logo__a, bg="#212121").place(x=-15, y=425)
-    
     
 
 def main():
