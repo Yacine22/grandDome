@@ -1,0 +1,51 @@
+{
+    "Activity": {
+        "WHO": {
+            "Actor": "",
+            "Company": ""
+        },
+        "WHERE": {
+            "Place": ""
+        },
+        "WHEN": {
+            "Date": "",
+            "Time": ""
+        },
+        "WHAT": {
+            "Appelation": "",
+            "Description": ""
+        },
+        "HOW": {
+            "Modality": {
+                "Technique": "",
+                "Protocol": {
+                    "Automation": "",
+                    "Detail": {
+                        "AcquisitionType": "",
+                        "LPFilename": "",
+                        "DomeDiameterinmm": 750
+                    }
+                }
+            }
+        },
+        "WHICH": {
+            "Camera": {
+                "Type": "DSRL",
+                "Model": " Canon EOS 2000D",
+                "Focal": "35/1",
+                "Iso": 100,
+                "Aperture": 8,
+                "Whitebalance": " Daylight",
+                "Shutterspeed": " 1/10"
+            },
+            "Light": {
+                "SourceType": "LED",
+                "Number": "",
+                "Natural": "True"
+            }
+        },
+        "WHY": {
+            "Project": ""
+        }
+    }
+}

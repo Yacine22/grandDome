@@ -1,0 +1,51 @@
+{
+    "Activity": {
+        "WHO": {
+            "Actor": "",
+            "Company": ""
+        },
+        "WHERE": {
+            "Place": ""
+        },
+        "WHEN": {
+            "Date": "06/01/2022",
+            "Time": "14:37"
+        },
+        "WHAT": {
+            "Appelation": "",
+            "Description": ""
+        },
+        "HOW": {
+            "Modality": {
+                "Technique": "",
+                "Protocol": {
+                    "Automation": "",
+                    "Detail": {
+                        "AcquisitionType": "RTI LEGERE",
+                        "LPFilename": "LP85",
+                        "DomeDiameterinmm": 750
+                    }
+                }
+            }
+        },
+        "WHICH": {
+            "Camera": {
+                "Type": "DSRL",
+                "Model": "",
+                "Focal": "",
+                "Iso": "",
+                "Aperture": "",
+                "Whitebalance": "",
+                "Shutterspeed": ""
+            },
+            "Light": {
+                "SourceType": "LED",
+                "Number": 85,
+                "Natural": "True"
+            }
+        },
+        "WHY": {
+            "Project": ""
+        }
+    }
+}

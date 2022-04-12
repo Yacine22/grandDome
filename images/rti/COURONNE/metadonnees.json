@@ -1,0 +1,51 @@
+{
+    "Activity": {
+        "WHO": {
+            "Actor": "MERCURIO",
+            "Company": "MERCURIO"
+        },
+        "WHERE": {
+            "Place": ""
+        },
+        "WHEN": {
+            "Date": "11/03/2022",
+            "Time": "16:26"
+        },
+        "WHAT": {
+            "Appelation": "JOAILLERIE_155",
+            "Description": ""
+        },
+        "HOW": {
+            "Modality": {
+                "Technique": "RTI",
+                "Protocol": {
+                    "Automation": "",
+                    "Detail": {
+                        "AcquisitionType": "RTI DENSE",
+                        "LPFilename": "LP",
+                        "DomeDiameterinmm": 750
+                    }
+                }
+            }
+        },
+        "WHICH": {
+            "Camera": {
+                "Type": "DSRL",
+                "Model": " Canon EOS 2000D",
+                "Focal": "",
+                "Iso": 100,
+                "Aperture": " 8",
+                "Whitebalance": " Fluorescent",
+                "Shutterspeed": " 1/5"
+            },
+            "Light": {
+                "SourceType": "LED",
+                "Number": 155,
+                "Natural": "True"
+            }
+        },
+        "WHY": {
+            "Project": ""
+        }
+    }
+}

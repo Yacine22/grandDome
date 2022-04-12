@@ -1,0 +1,51 @@
+{
+    "Activity": {
+        "WHO": {
+            "Actor": "Yacine Merabet",
+            "Company": "Mercurio"
+        },
+        "WHERE": {
+            "Place": "Marseille"
+        },
+        "WHEN": {
+            "Date": "06/01/2022",
+            "Time": "10:56"
+        },
+        "WHAT": {
+            "Appelation": "",
+            "Description": "TEST"
+        },
+        "HOW": {
+            "Modality": {
+                "Technique": "RTI",
+                "Protocol": {
+                    "Automation": "",
+                    "Detail": {
+                        "AcquisitionType": "RTI LEGERE",
+                        "LPFilename": "LP85",
+                        "DomeDiameterinmm": "270"
+                    }
+                }
+            }
+        },
+        "WHICH": {
+            "Camera": {
+                "Type": "DSRL",
+                "Model": " Canon EOS 2000D",
+                "Focal": "35/1",
+                "Iso": 100,
+                "Aperture": 8,
+                "Whitebalance": " Cloudy",
+                "Shutterspeed": " 1/10"
+            },
+            "Light": {
+                "SourceType": "LED",
+                "Number": 85,
+                "Natural": "True"
+            }
+        },
+        "WHY": {
+            "Project": "TEST"
+        }
+    }
+}
