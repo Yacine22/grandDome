@@ -1965,7 +1965,7 @@ class others:
         self.button_exitCnx.place(x=0, y=0)
         
         
-        self.label_MAJWIFI = Label(self.wifi_wind_con, text="Connexion OK \n Veuillez patienter pendant la Mise à jour SVP", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 15 * -1, "bold"), width=30)
+        self.label_MAJWIFI = Label(self.wifi_wind_con, text="Connexion OK \n Veuillez patienter pendant la Mise à jour SVP", bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 15 * -1, "bold"), width=40)
         self.label_MAJWIFI.grid(row=0, column=0, padx=50, pady=10, sticky='n')
         
         self.button_MAJ = Button(self.wifi_wind_con, text="Mise à Jour", fg="#FFFFFF",bg='#3F3F38', font=("Roboto Mono", 24 * -1, "bold"), height=10, command=self.miseAJour)
