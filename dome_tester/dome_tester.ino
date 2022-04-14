@@ -14,7 +14,7 @@
 
 
 // ----- Parameters -----
-int dataReceived, receivedParameters, power, dataSent;
+int dataReceived, receivedParameters, dataSent;
 
 #define PIN_DS_DATA A0
 #define PIN_STCP_LATCH 7
@@ -88,7 +88,6 @@ void receiveLong(int) {
 
     dataReceived = Wire.read();
     receivedParameters = Wire.read();
-    power = Wire.read();
 
     if (dataReceived == 1) {
 
@@ -105,6 +104,7 @@ void receiveLong(int) {
 
       digitalWrite(PIN_STCP_LATCH, 0);
       brightness_with_ledDim(receivedParameters);
+      delay(50);
       all_on();
       digitalWrite(PIN_STCP_LATCH, 1);
       int md_intens = receivedParameters;
@@ -115,16 +115,13 @@ void receiveLong(int) {
 
     ////// For micro Dome :: Turn Tile ON
     if (dataReceived == 6) {
-      if (power < 150){ 
-        turn_tile_on(receivedParameters, power);
-      }
-      else {
-        turn_tile_on(receivedParameters, 100);
-        }
+      delay(20);
+       turn_tile_on(receivedParameters, 150);
     }
 
 
     if (dataReceived == 3) {
+      delay(50);
       int gd_indx = receivedParameters;
       int md_indx = receivedParameters;
       allumer_led_x_md(md_indx);
@@ -151,18 +148,22 @@ void receiveLong(int) {
     }
 
     if (dataReceived == 0) {
+      delay(10);
       external_off(); //  OFF
     }
 
     if (dataReceived == 11){ // rouge
+      delay(20);
       displayColor(1, 0, 0);
     }
     
     if (dataReceived == 12){ // Vert
+      delay(20);
       displayColor(0, 1, 0);
     }
 
     if (dataReceived == 13){ // Blue
+      delay(20);
       displayColor(0, 0, 1);
     }
 
@@ -172,11 +173,6 @@ void receiveLong(int) {
 }
 
 void sendLong() {
-  /*
-  int pinFrom = RTC; 
-  byte dataToSend; 
-  dataToSend = digitalRead(pinFrom);
-  dataSent = pinFrom; */ 
   dataSent = dataReceived ;// return what was recieved --- just to test !!
   byte bytes[sizeof(long)];
 

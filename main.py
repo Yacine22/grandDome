@@ -506,7 +506,7 @@ class user_interface:
         t = threading.Thread(target=ext.trois_colors_250)
         t.start()
         try:
-            bus.write_block_data[0x44, 0, [2, intensity]]
+            bus.write_block_data(0x44, 0, [2, intensity])
         except:
             pass
         self._aquisition_(image_nb=nb_of_aq)  ############
