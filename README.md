@@ -128,6 +128,8 @@ sudo avrdude -p atmega328p -C ~/avrdude_gpio.conf -c pi_1 -v -U flash:w:<file>.h
 <img src="./screens/Commencer.PNG" alt="front image" width="300"/>
 </div>
 
+[See Full Tutorial in FR](https://github.com/Yacine22/main_dome)
+
 
 
 ### DATA ACQUISITION 
