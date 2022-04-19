@@ -778,7 +778,10 @@ class user_interface:
         
     def _aquisition_(self, image_nb):
         global time_cut
-        cam_mod = settings.image_data("cameramodel")['Current'].split(':')[-1].strip()
+        try:
+            cam_mod = settings.image_data("cameramodel")['Current'].split(':')[-1].strip()
+        except:
+            pass
         settings.killprocess()
         clear_cam_folder()
         i2c_state = i2c_checker() ### Check i2c ? 
@@ -1176,7 +1179,7 @@ class user_interface:
         
         
         ## --------------------- Slides --------------------------------------------------------------------
-        self.slider_allumer_LedNum = Scale(self.frame_scales, width=20, length=535, label="Allumer LED N° x/160",  activebackground='white', from_=0, to=160,
+        self.slider_allumer_LedNum = Scale(self.frame_scales, width=20, length=535, label="Allumer LED N° x/105",  activebackground='white', from_=0, to=105,
                                            orient="horizontal", state=DISABLED, bg="#212121", fg="#FFF3AE", font=("Roboto Mono", 13 * -1, "bold"),
                                             troughcolor="#424035", highlightbackground="#FFF3AE", command=self._on_scale_LedN)
         
@@ -2163,8 +2166,24 @@ if __name__ == '__main__':
     settings.killprocess()
     
     try:
-        os.system("gphoto2 --set-config whitebalance=6")
-        os.system("gphoto2 --set-config iso=3")
+        iso_value = image_data("iso")['Choices'][0].split(":")[-1].split()
+        if iso_value[-1] != str(100):
+            for iso_val in image_data("iso")['Choices']:
+                get_100iso = iso_val.split(":")[-1].split()[-1]
+                if get_100iso == str(100):
+                    iso100 = iso_val.split(":")[-1].split()[0]
+                    os.system("gphoto2 --set-config iso="+iso100)
+        
+        wb_value = image_data("whitebalance")['Choices'][0].split(":")[-1].split()
+        if wb_value[-1] != str(100):
+            for wb_val in image_data("whitebalance")['Choices']:
+                get_DLwb = wb_val.split(":")[-1].split()[-1]
+                if get_DLwb == 'Daylight':
+                    wbLB = wb_val.split(":")[-1].split()[0]
+                    os.system("gphoto2 --set-config whitebalance="+wbLB)
+
+        
+                
         os.system("gphoto2 --set-config shutterspeed=28")
         os.system("gphoto2 --set-config aperture=3")
         settings.killprocess()
