@@ -370,11 +370,11 @@ class user_interface:
                                   relief="flat", cursor="tcross", command=self.go_out)
         self.capture_button_exit_['image'] = self.icon_retour
       
-        self.aq_type_items = ["RAPIDE", "DENSE"]
+        self.aq_type_items = ["RAPIDE", "DENSE", "ULTRA RAPIDE"]
         
         
         self.label_aq_type = Label(self.capture_editer, width=18, height=2, text="Type d'Acquisiton : ", bg="#212121", fg="#FFF3AE", font=("Roboto Mono", 23 * -1))
-        self.aq_type_list = Listbox(self.capture_editer,  height=2, width=16, exportselection=0, font=("Roboto Mono", 50 * -1, "bold"), bg="#212121", fg="#FFF3AE",
+        self.aq_type_list = Listbox(self.capture_editer,  height=3, width=16, exportselection=0, font=("Roboto Mono", 50 * -1, "bold"), bg="#212121", fg="#FFF3AE",
                                          selectmode=SINGLE)
         
         for type_ in self.aq_type_items:
@@ -499,7 +499,7 @@ class user_interface:
         -------
         None.
         """
-        dome_options = {"MICRO DOME":{"RAPIDE":35, "DENSE":105}, "GRAND DOME":{"RAPIDE":85, "DENSE":155}}
+        dome_options = {"MICRO DOME":{"RAPIDE":35, "DENSE":105}, "GRAND DOME":{"RAPIDE":85, "DENSE":155, "ULTRA RAPIDE":45}}
         nb_of_aq = dome_options[dome_type][aq_type]
         self.project_data()
         print("Mode Rapide lancé!")
@@ -792,10 +792,17 @@ class user_interface:
             list_85 = [x+32*k for x in leds_85]
             list_led85 = list_led85+list_85
         
+        leds_45 = [2, 4, 8, 10, 15, 17, 21, 23, 26] #### ULTRA RAPIDE MODE 
+        list_led45 = []
+        for k in range(5):        
+            list_45 = [x+32*k for x in leds_45]
+            list_led45 = list_led45+list_45
+        
+        
         nbLED_microDome = 105
         nbTiles_microdome = 35 
        
-        ### For 155 LEDs (Deleting small LEds !
+        ### For 155 LEDs (Deleting small LEDs !
         leds_a_allumer_155 = [s for s in range(160)]
         for k in range(5):
             leds_a_allumer_155.remove(31+(32*k))
@@ -854,6 +861,10 @@ class user_interface:
                     ##########
                     
                     which["Light"]["Number"]= image_nb
+                    
+                    if image_nb == 45 :
+                        how['Modality']['Protocol']['Detail']['AcquisitionType']="RTI ULTRA RAPIDE"
+                        led_list = list_led45
                     
                     if image_nb == 85 :
                         how['Modality']['Protocol']['Detail']['AcquisitionType']="RTI LEGERE"
