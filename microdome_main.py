@@ -1903,7 +1903,7 @@ class others:
             for i,d in enumerate(self.display_wifilist):
                 self.label = Label(self.wifi_wind, text="  "+d, height=2, bd=2, width=20, relief="flat", font=("Roboto Mono", 10 * -1, "bold"), fg="#FFF3AE",
                                       bg="#212121").place(x=22, y=73+46*i)
-            self.mot_de_passeWifi = Entry(self.wifi_wind, width=30, bd=2, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"), show="*")
+            self.mot_de_passeWifi = Entry(self.wifi_wind, width=30, bd=2, bg='#212121', fg='#FFF3AE', font=("Roboto Mono", 13 * -1, "bold"))
             self.mot_de_passeWifi.place(x=250, y=115)
             
             self.valid_wifi_data = Button(self.wifi_wind, text="OK", bg='#212121', fg='#FFF3AF',command=self.wifi_conf)
@@ -2277,3 +2277,4 @@ if __name__ == '__main__':
         os.system("sudo rm /home/pi/grandDome/images/rti/*.JPG")
     settings.killprocess()
     
+
