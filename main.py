@@ -109,7 +109,7 @@ global sortir ## boolean
 global intensity
 time_cut = 0.6 ## Default
 sortir = True
-intensity = 36
+intensity = 32 ## 36 
 
 class user_interface:
    
