@@ -1921,7 +1921,7 @@ class others:
             self.valid_wifi_data.place(x=600, y=130)
             
             self.chclavier = Button(self.wifi_wind, text="Clavier", bg='#212121', fg='#FFF3AF', command=self.chclavierMaj)
-            self.chclavier.place(x=600, y=160)
+            self.chclavier.place(x=200, y=170) ##(x=600, y=160)
             
             
             self.wifi_wind.rowconfigure(0, weight=1)
