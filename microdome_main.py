@@ -33,6 +33,13 @@ from subprocess import check_call
 
 held_for=0.0
 use_button=27                    # lowest button on PiTFT+
+
+def kill_app():  ### kill application
+    os.system("killall python")
+    os.system("killall python3")
+    os.system("killall")
+
+
 def rls():
         global held_for
         if (held_for > 6.0):
@@ -43,7 +50,11 @@ def rls():
                 except:
                     pass
         elif (held_for > 1.0):
-                check_call(['/sbin/reboot'])
+                try:
+                    kill_app()
+                except:
+                    pass
+                #check_call(['/sbin/reboot'])
                 try:
                     bus = smbus.SMBus(1)
                     bus.write_byte(0x44, 1)
@@ -51,6 +62,7 @@ def rls():
                     pass
         else:
             held_for = 0.0
+
 
 def hld():
         global held_for
