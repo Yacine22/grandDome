@@ -370,7 +370,7 @@ class user_interface:
                                   relief="flat", cursor="tcross", command=self.go_out)
         self.capture_button_exit_['image'] = self.icon_retour
       
-        self.aq_type_items = ["RAPIDE", "DENSE", "ULTRA RAPIDE"]
+        self.aq_type_items = ["ULTRA", "RAPIDE", "DENSE"]
         
         
         self.label_aq_type = Label(self.capture_editer, width=18, height=2, text="Type d'Acquisiton : ", bg="#212121", fg="#FFF3AE", font=("Roboto Mono", 23 * -1))
@@ -499,7 +499,7 @@ class user_interface:
         -------
         None.
         """
-        dome_options = {"MICRO DOME":{"RAPIDE":35, "DENSE":105}, "GRAND DOME":{"RAPIDE":85, "DENSE":155, "ULTRA RAPIDE":45}}
+        dome_options = {"MICRO DOME":{"RAPIDE":35, "DENSE":105}, "GRAND DOME":{"ULTRA":45, "RAPIDE":85, "DENSE":155}}
         nb_of_aq = dome_options[dome_type][aq_type]
         self.project_data()
         print("Mode Rapide lancé!")
@@ -978,7 +978,11 @@ class user_interface:
                             subprocess.run(["gphoto2", "--trigger-capture", "--wait-event=15ms"])
                         time.sleep(time_cut)
                         self.capture_wind_aq.update()
-                    bus.write_byte(0x44, 1)
+                    
+                    try:
+                        bus.write_block_data(0x44, 0, [2, 20]) ## Turn On With low intensity 
+                    except:
+                        pass 
                                    
                     self.label_aq['text'] = "Enregistrement des images..."
                     self.progress_bar['value'] = 0
@@ -1036,7 +1040,7 @@ class user_interface:
                             self.capture_wind_aq.update()
                     
                     try:
-                        bus.write_byte(0x44, 0)
+                        bus.write_block_data(0x44, 0, [2, 20]) ## Turn On With low intensity 
                     except:
                         pass
                     
